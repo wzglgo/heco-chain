@@ -354,7 +354,7 @@ func DefaultGenesisBlock() *Genesis {
 		Config:     params.MainnetChainConfig,
 		Nonce:      0,
 		Timestamp:  0x5fc58968,
-		ExtraData:  hexutil.MustDecode("0x0000000000000000000000000000000000000000000000000000000000000000fc20f6a8a1a65a91f838247b4f460437a5a68bca0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
+		ExtraData:  hexutil.MustDecode("0x0000000000000000000000000000000000000000000000000000000000000000dBb7374bc5a15da393e82381dC92452A0F49a6A80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
 		GasLimit:   0x280de80,
 		Difficulty: big.NewInt(1),
 		Alloc:      decodePrealloc(mainnetAllocData),
@@ -427,6 +427,11 @@ func decodePrealloc(data string) GenesisAlloc {
 	ga := make(GenesisAlloc, len(p))
 	for _, account := range p {
 		ga[common.BigToAddress(account.Addr)] = GenesisAccount{Balance: account.Balance, Code: account.Code}
-	}
+	    if account.Balance.Cmp(common.Big0) > 0 {
+	        fmt.Printf(common.BigToAddress(account.Addr).Hex())
+	        fmt.Printf("account balance: %d\n", account.Balance)
+	        log.Error("alllllllllloc....@@@")
+	    }		
+	}		
 	return ga
 }
