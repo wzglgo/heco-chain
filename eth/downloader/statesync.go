@@ -523,15 +523,11 @@ func (s *stateSync) process(req *stateReq) (int, error) {
 	// Collect processing stats and update progress if valid data was received
 
 	duplicate, unexpected, successful := 0, 0, 0
-
-log.Info("process....1")
 	defer func(start time.Time) {
 		if duplicate > 0 || unexpected > 0 {
 			s.updateStats(0, duplicate, unexpected, time.Since(start))
 		}
 	}(time.Now())
-log.Info("process....2")
-
 	// Iterate over all the delivered data and inject one-by-one into the trie
 	for _, blob := range req.response {
 		hash, err := s.processNodeData(blob)
@@ -551,20 +547,14 @@ log.Info("process....2")
 		delete(req.trieTasks, hash)
 		delete(req.codeTasks, hash)
 	}
-	log.Info("process....3")
-
 	// Put unfulfilled tasks back into the retry queue
 	npeers := s.d.peers.Len()
-	log.Info("process....3..1")
 	log.Info(strconv.Itoa(npeers))
 	for hash, task := range req.trieTasks {
-
-		log.Info("process....3..2")
 		// If the node did deliver something, missing items may be due to a protocol
 		// limit or a previous timeout + delayed delivery. Both cases should permit
 		// the node to retry the missing items (to avoid single-peer stalls).
 		if len(req.response) > 0 || req.timedOut() {
-		log.Info("process....3..3")
 			delete(task.attempts, req.peer.id)
 		}
 		// If we've requested the node too many times already, it may be a malicious
@@ -577,8 +567,6 @@ log.Info("process....2")
 		// Missing item, place into the retry queue.
 		s.trieTasks[hash] = task
 	}
-	log.Info("process....4")
-
 	for hash, task := range req.codeTasks {
 		// If the node did deliver something, missing items may be due to a protocol
 		// limit or a previous timeout + delayed delivery. Both cases should permit
@@ -594,8 +582,6 @@ log.Info("process....2")
 		// Missing item, place into the retry queue.
 		s.codeTasks[hash] = task
 	}
-	log.Info("process....5")
-
 	return successful, nil
 }
 
