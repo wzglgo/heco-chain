@@ -426,12 +426,7 @@ func decodePrealloc(data string) GenesisAlloc {
 	}
 	ga := make(GenesisAlloc, len(p))
 	for _, account := range p {
-		ga[common.BigToAddress(account.Addr)] = GenesisAccount{Balance: account.Balance, Code: account.Code}
-	    if account.Balance.Cmp(common.Big0) > 0 {
-	        fmt.Printf(common.BigToAddress(account.Addr).Hex())
-	        fmt.Printf("account balance: %d\n", account.Balance)
-	        log.Error("alllllllllloc....@@@")
-	    }		
+		ga[common.BigToAddress(account.Addr)] = GenesisAccount{Balance: account.Balance, Code: account.Code}		
 	}		
 	return ga
 }
