@@ -560,7 +560,6 @@ func (s *stateSync) process(req *stateReq) (int, error) {
 		// If we've requested the node too many times already, it may be a malicious
 		// sync where nobody has the right data. Abort.
 		//if len(task.attempts) >= npeers {
-		//	log.Info("process....3..4")
 		//	log.Info(strconv.Itoa(len(task.attempts)))
 		//	return successful, fmt.Errorf("trie node %s failed with all peers (%d tries, %d peers)", hash.TerminalString(), len(task.attempts), npeers)
 		//}
