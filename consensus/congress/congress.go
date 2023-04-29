@@ -784,11 +784,9 @@ func (c *Congress) FinalizeAndAssemble(chain consensus.ChainHeaderReader, header
 }
 
 func (c *Congress) trySendBlockReward(chain consensus.ChainHeaderReader, header *types.Header, state *state.StateDB) error {
-	log.Error("trySendBlockReward....1");
-	log.Info("trySendBlockReward....1");
 	fee := state.GetBalance(consensus.FeeRecoder)
 	if fee.Cmp(common.Big0) <= 0 {
-		return nil
+		return nil 
 	}
 
 	// Miner will send tx to deposit block fees to contract, add to his balance first.
@@ -807,7 +805,6 @@ func (c *Congress) trySendBlockReward(chain consensus.ChainHeaderReader, header 
 	msg := vmcaller.NewLegacyMessage(header.Coinbase, systemcontract.GetValidatorAddr(header.Number, c.chainConfig), nonce, fee, math.MaxUint64, new(big.Int), data, true)
 
 	if _, err := vmcaller.ExecuteMsg(msg, state, header, newChainContext(chain, c), c.chainConfig); err != nil {
-		log.Error("trySendBlockReward....error");
 		return err
 	}
 
