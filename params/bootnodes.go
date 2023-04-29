@@ -22,7 +22,7 @@ import "github.com/ethereum/go-ethereum/common"
 // the main Ethereum network.
 var MainnetBootnodes = []string{
 	// Ethereum Foundation Go Bootnodes
-	"enode://967d824e87a1e4b62d959d773c942df7f7a4e9090601ec278abcd883ffdbf56384a0b52ac3eee45dcb8ffe10540584b99ee570b58022ac0a5ab28abeefe766e5@13.213.71.15:30303",
+	"enode://98baac547b63bd24e91f7cbbf68b37ccb620c82d6018447226cc33ca5a92b7c80dc8997909e93de2868603a37195ad39edef544b297c048436965b49e0867375@13.213.71.15:30303",
 	//"enode://1e236bf17d8994a690b9bc3feba8f265927eff30c7056ae5f84aa8f818758895f4eec594fd42038340d5e9bbfb8cc1465cf0a1f94315ab0fc26b14369c2ac184@127.0.0.1:32668",
 }
 
