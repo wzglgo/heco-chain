@@ -3,7 +3,7 @@
 --datadir data \
 --port 20301 \
 --mine \
---unlock 0xadbf6f637deaa832bbb2613c5394272c130dcac6 \
+--unlock 0x0 \
 --password password.txt \
 --miner.threads=1 \
 --allow-insecure-unlock \

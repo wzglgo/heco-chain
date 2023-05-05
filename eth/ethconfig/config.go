@@ -89,7 +89,7 @@ var Defaults = Config{
 		DatasetsOnDisk:   2,
 		DatasetsLockMmap: false,
 	},
-	NetworkId:               MainnetChainConfig.ChainID,
+	NetworkId:               210,
 	TxLookupLimit:           0,
 	LightPeers:              100,
 	UltraLightFraction:      75,
